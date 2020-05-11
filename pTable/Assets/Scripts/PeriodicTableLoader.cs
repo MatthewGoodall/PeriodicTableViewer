@@ -37,36 +37,49 @@ public class PeriodicTableLoader : MonoBehaviour
 
     public void highlightElement(Vector2 direction)
     {
+        if (currentPeriod <= 0)
+        {
+            if (direction.x > 0)
+            {
+                currentPeriod += Mathf.RoundToInt(direction.x);
+            }
+        }
+        else
+        {
+            Debug.Log(direction.x + " : " + Mathf.RoundToInt(direction.x));
+            currentPeriod += Mathf.RoundToInt(direction.x);
+        }
         GameObject[] gameObjects = periods[currentPeriod].elementObjects.ToArray();
+        UnHighlightElements();
         if (currentRow > gameObjects.Length)
         {
-            currentRow += Mathf.RoundToInt(direction.y);
+            //currentRow += Mathf.RoundToInt(direction.y);
             Element currentElement = gameObjects[periods.Length - 1].GetComponent<Element>();
-            currentElement.highlightElement();
+            currentElement.isHilighted = true;
             
-        } else if (currentRow < 0)
+        } else if (currentRow <= 0)
         {
-            currentRow += Mathf.RoundToInt(direction.y);
-            Element currentElement = gameObjects[0].GetComponent<Element>();
-            currentElement.highlightElement();
+            if(direction.y > 0)
+            {
+                currentRow += Mathf.RoundToInt(direction.y);
+            }
+            Element currentElement = gameObjects[currentRow].GetComponent<Element>();
+            currentElement.isHilighted = true;
 
         } else
         {
             currentRow += Mathf.RoundToInt(direction.y);
-            if (gameObjects[currentRow] != null)
-            {
-                Element currentElement = gameObjects[currentRow].GetComponent<Element>();
-                currentElement.highlightElement();
-            }
+            Element currentElement = gameObjects[currentRow].GetComponent<Element>();
+            currentElement.isHilighted = true;
         }
     }
 
     public void UnHighlightElements() 
     {
         
-        for (int i = 0; i < periods[currentRow].elementObjects.Count; i++)
+        for (int i = 0; i < periods[currentPeriod].elementObjects.Count; i++)
         {
-            Element element = periods[currentRow].elementObjects[i].GetComponent<Element>();
+            Element element = periods[currentPeriod].elementObjects[i].GetComponent<Element>();
             if (element.isHilighted)
             {
                 element.isHilighted = false;

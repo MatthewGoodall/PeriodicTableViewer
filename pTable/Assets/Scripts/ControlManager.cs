@@ -21,23 +21,15 @@ public class ControlManager : MonoBehaviour
     }
     private void Update()
     {
-        if(move.y > 0.5f && !runOnce)
+        Debug.Log(move);
+        if (move.y != 0 || move.x != 0 && !runOnce)
         {
-            tableLoader.UnHighlightElements();
             tableLoader.highlightElement(move);
-            runOnce = true;
-
-        } else if(move.y < -0.5f && !runOnce)
-        {
-            tableLoader.UnHighlightElements();
-            tableLoader.highlightElement(move);
+        }
+        else {
             runOnce = true;
         }
-
-        if(Mathf.RoundToInt(move.y) == 0f)
-        {
-            runOnce = false;
-        }
+      
 
 
     }
