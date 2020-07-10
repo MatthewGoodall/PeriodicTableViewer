@@ -42,13 +42,13 @@ public class PeriodicTableLoader : MonoBehaviour
         {
             currentRow += Mathf.RoundToInt(direction.y);
             Element currentElement = gameObjects[periods.Length - 1].GetComponent<Element>();
-            currentElement.highlightElement();
+            currentElement.isHilighted = true;
             
         } else if (currentRow < 0)
         {
             currentRow += Mathf.RoundToInt(direction.y);
             Element currentElement = gameObjects[0].GetComponent<Element>();
-            currentElement.highlightElement();
+            currentElement.isHilighted = true;
 
         } else
         {
@@ -56,7 +56,7 @@ public class PeriodicTableLoader : MonoBehaviour
             if (gameObjects[currentRow] != null)
             {
                 Element currentElement = gameObjects[currentRow].GetComponent<Element>();
-                currentElement.highlightElement();
+                currentElement.isHilighted = true;
             }
         }
     }
