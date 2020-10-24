@@ -14,21 +14,26 @@ public class Element : MonoBehaviour
 
     public bool isHilighted = false;
 
+    private Image image;
 
     public void SetData()
     {
         chemSymbol.SetText(data.symbol);
         atomicNumber.SetText(data.number);
+        image = GetComponent<Image>();
     }
 
     private void Update()
     {
         if (isHilighted)
         {
-            GetComponent<Image>().color = Color.red;
+            Color color = Color.red;
+            image.color = color;
         } else
         {
-            GetComponent<Image>().color = Color.white;
+            Color color = Color.white;
+            color.a = 0.50f;
+            image.color = color;           
         }
     }
 

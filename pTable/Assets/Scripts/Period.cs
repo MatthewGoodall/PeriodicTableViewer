@@ -26,17 +26,17 @@ public class Period : MonoBehaviour
                     if (element.category == "lanthanide " && element.ypos == periodNumber)
                     {
                         elements.Add(element);
-                        Debug.Log("Added: " + element.name);
+                        
                     }
                     else if (element.category == "actinide " && element.ypos == periodNumber)
                     {
                         elements.Add(element);
-                        Debug.Log("Added: " + element.name);
+                        
                     }
                     else if (element.xpos == periodNumber)
                     {
                         elements.Add(element);
-                        Debug.Log("Added: " + element.name);
+                        
                     }
                 }
             }
