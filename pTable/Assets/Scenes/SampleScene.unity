@@ -1096,7 +1096,7 @@ MonoBehaviour:
   elementObjects: []
   catagory:
   - 'actinide '
-  periodNumber: 9
+  periodNumber: 3
   elementPrefab: {fileID: 5920068179356980695, guid: e313cec8eb3b2a040b44ce8f960fb95b,
     type: 3}
 --- !u!114 &672570917
@@ -1547,7 +1547,7 @@ MonoBehaviour:
   elementObjects: []
   catagory:
   - 'lanthanide '
-  periodNumber: 8
+  periodNumber: 3
   elementPrefab: {fileID: 5920068179356980695, guid: e313cec8eb3b2a040b44ce8f960fb95b,
     type: 3}
 --- !u!114 &1047628272
@@ -1983,7 +1983,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   currentPeriod: 1
-  currentRow: 0
+  currentRow: 1
 --- !u!1 &1424956934
 GameObject:
   m_ObjectHideFlags: 0
@@ -2179,6 +2179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tableLoader: {fileID: 1352444987}
+  runOnce: 0
 --- !u!4 &1626884566
 Transform:
   m_ObjectHideFlags: 0

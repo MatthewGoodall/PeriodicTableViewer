@@ -23,7 +23,7 @@ public class @UserControls : IInputActionCollection, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""71319955-c2f0-4083-a353-4912ad793c10"",
                     ""expectedControlType"": ""Analog"",
-                    ""processors"": """",
+                    ""processors"": ""AxisDeadzone"",
                     ""interactions"": """"
                 },
                 {

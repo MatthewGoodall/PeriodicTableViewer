@@ -23,12 +23,12 @@ public class Period : MonoBehaviour
             {
                 if (catagory.Contains(element.category))
                 {
-                    if (element.category == "lanthanide " && element.ypos == periodNumber)
+                    if (element.category == "lanthanide ")
                     {
                         elements.Add(element);
                         
                     }
-                    else if (element.category == "actinide " && element.ypos == periodNumber)
+                    else if (element.category == "actinide ")
                     {
                         elements.Add(element);
                         

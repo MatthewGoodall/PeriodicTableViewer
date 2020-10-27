@@ -35,43 +35,69 @@ public class PeriodicTableLoader : MonoBehaviour
 
     }
 
+    void Start()
+    {
+        Debug.Log("Here");
+        highlightElement(new Vector2(1,1));
+    }
     public void highlightElement(Vector2 direction)
     {
-        if (currentPeriod <= 0)
+        
+        UnHighlightElements();
+        int x = Mathf.RoundToInt(direction.x); int y = Mathf.RoundToInt(direction.y);
+        if (currentPeriod <= 0) 
         {
-            if (direction.x > 0)
+            currentPeriod = 0;
+            if (direction.x > 0.5f)
             {
-                currentPeriod += Mathf.RoundToInt(direction.x);
+                currentPeriod += x;
+            }
+        }
+        else if (currentPeriod >= periods.Length - 1)
+        {
+            currentPeriod = periods.Length - 1;
+            if (direction.x < -0.5f)
+            {
+                currentPeriod += x;
+            }
+        } else if (currentPeriod == 3 && currentRow != 5 && currentRow != 6)
+        {
+            if(direction.x > 0.5f)
+            {
+                currentPeriod = 6;
             }
         }
         else
         {
-            Debug.Log(direction.x + " : " + Mathf.RoundToInt(direction.x));
-            currentPeriod += Mathf.RoundToInt(direction.x);
+            currentPeriod += x; 
+            Debug.Log(Mathf.RoundToInt(direction.x));
         }
-        GameObject[] gameObjects = periods[currentPeriod].elementObjects.ToArray();
-        UnHighlightElements();
-        if (currentRow > gameObjects.Length)
-        {
-            //currentRow += Mathf.RoundToInt(direction.y);
-            Element currentElement = gameObjects[periods.Length - 1].GetComponent<Element>();
-            currentElement.isHilighted = true;
-            
-        } else if (currentRow <= 0)
-        {
-            if(direction.y > 0)
-            {
-                currentRow += Mathf.RoundToInt(direction.y);
-            }
-            Element currentElement = gameObjects[currentRow].GetComponent<Element>();
-            currentElement.isHilighted = true;
 
+        GameObject[] gameObjects = periods[currentPeriod].elementObjects.ToArray();
+        Element currentElement;
+        if(currentRow <= 0)
+        {
+            currentRow = 0;
+            
+            if(direction.y <= -0.5f)
+            {
+                currentRow -= y;
+            }
+        } else if (currentRow >= gameObjects.Length - 1)
+        {
+            currentRow = gameObjects.Length;
+            if(direction.y <= -0.5f)
+            {
+                currentRow += y;
+            }
         } else
         {
-            currentRow += Mathf.RoundToInt(direction.y);
-            Element currentElement = gameObjects[currentRow].GetComponent<Element>();
-            currentElement.isHilighted = true;
+            currentRow += -y;
         }
+
+        currentElement = gameObjects[currentRow].GetComponent<Element>();
+        currentElement.isHilighted = true;
+        
     }
 
     public void UnHighlightElements() 

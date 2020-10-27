@@ -17,18 +17,39 @@ public class ControlManager : MonoBehaviour
     {
         controls = new UserControls();
         controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
+        controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
 
     }
+
+
     private void Update()
     {
-        Debug.Log(move);
-        if (move.y != 0 || move.x != 0 && !runOnce)
+        if (!runOnce && move.y >= 0.5f || !runOnce && move.y <= -0.5f)
         {
             tableLoader.highlightElement(move);
-        }
-        else {
+            runOnce = true;
+        } else if (!runOnce && move.x >= 0.5f || !runOnce && move.x <= -0.5f)
+        {
+            tableLoader.highlightElement(move);
             runOnce = true;
         }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            runOnce = false;
+        }
+
+        
+        /*if (!runOnce && Mathf.RoundToInt(move.y) != 0.0f || Mathf.RoundToInt(move.x) != 0.0f )
+        {
+            tableLoader.highlightElement(move);
+            
+            runOnce = true;
+        }
+
+        else if (runOnce && move.y == 0.0f){
+            runOnce = false;
+        }*/
       
 
 
